@@ -1,0 +1,38 @@
+{
+  "engines": {
+    "node": "18.14.2"
+  },
+  "name": "devtenderbackend",
+  "version": "1.0.0",
+  "description": "tender for web",
+
+  "main": "app.js",
+ 
+  "scripts": {
+  "dev": "nodemon src/app.js",
+  "start": "nodemon src/app.js",
+  "build": "npm install && npm install --prefix DevTenderFrontend && npm run build --prefix DevTenderFrontend"
+ 
+},"keywords": [
+    "node",
+    "js",
+    "mongooodb"
+  ],
+  "author": "abhishek singh",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie": "^0.6.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.9.0",
+    "mongoose": "^8.6.3",
+    "validator": "^13.12.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
