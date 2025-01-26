@@ -35,6 +35,7 @@ const dbConnect = async() => {
 	}catch(error){
 		console.error('Database connection error:', error);
         throw error;
+		process.exit(1);
 	}
 	
 };
