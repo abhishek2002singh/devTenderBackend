@@ -8,7 +8,7 @@ const userSchema =new mongoose.Schema({
         type:String,
         required: true,
         index:true,
-        minlength:4,
+        minlength:2,
         maxlenght:50,
     },
     lastName:{
@@ -33,13 +33,13 @@ const userSchema =new mongoose.Schema({
         type: String,
         required:true,
         
-        validate(value){
-            if(!validator.isStrongPassword(value)){
-                throw new Error("password is not valid" + value);
+        // validate(value){
+        //     if(!validator.isStrongPassword(value)){
+        //         throw new Error("password is not valid" + value);
                 
 
-            }
-        }
+        //     }
+        //}
     },
     age: {
         type: Number,
