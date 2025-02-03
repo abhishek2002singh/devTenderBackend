@@ -58,9 +58,14 @@ authRouth.post('/login', async (req, res) => {
         const token = await user.getJWT();
   
         //add the token to cookie and send the respande back the user
-         res.cookie("token" ,token ,{ expires :new Date(Date.now()+8*3600000)})
+          res.cookie("token" ,token ,{ expires :new Date(Date.now()+8*3600000)})
   
-        res.send(user);
+         res.send(user );
+        // return res.status(200).json({
+        //   message:"Login successful" , 
+        //   user ,
+        //   token
+        // })
       } else {
         throw new Error("Password is not correct");
       }

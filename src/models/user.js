@@ -73,6 +73,56 @@ const userSchema =new mongoose.Schema({
     skills:{
         type: [String]
     },
+    likedPosts: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Post",
+        },
+      ],
+      likedReels: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Reel",
+        },
+      ],
+      reels: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Reel",
+        },
+      ],
+      commentsOnPosts: [
+        {
+          postId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Post",
+          },
+          comment: {
+            type: String,
+            required: true,
+          },
+          timestamp: {
+            type: Date,
+            default: Date.now,
+          },
+        },
+      ],
+      commentsOnReels: [
+        {
+          reelId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Reel",
+          },
+          comment: {
+            type: String,
+            required: true,
+          },
+          timestamp: {
+            type: Date,
+            default: Date.now,
+          },
+        },
+      ],
 },{
     timestamps:true,
 })

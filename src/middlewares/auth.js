@@ -8,7 +8,7 @@ const userAuth =async(req , res , next)=>{
     
          const  {token} = getcookies
          if(!token){
-          return res.status(401).send("please login")
+          return res.status(401).send("please login middleware")
          }
     
       //validate my token
