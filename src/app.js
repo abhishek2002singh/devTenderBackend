@@ -3,12 +3,11 @@ const express = require('express');
 const app = express();
 const dbConnect = require('./config/database');
 const cookieParser = require('cookie-parser')
-
-const dotenv = require('dotenv').config();;
+require('dotenv').config();;
 const fileUpload = require("express-fileupload")
 
 
-const port = process.env.PORT || 7777
+const port = process.env.PORT
 const path = require('path')
 
 const _dirname = path.resolve();
