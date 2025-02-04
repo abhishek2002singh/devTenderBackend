@@ -5,7 +5,7 @@ const Post = require('../models/postModel');
 const Reel = require('../models/reelScheme'); 
 const Like = require('../models/likeModel'); 
 const Comment = require('../models/comment'); 
-const { uploadFileToCloudinary } = require("../Utils/uploadToCloudinary");
+
 require("dotenv").config()
 
 const likeCommentRouter = express.Router();

@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser')
 
 const dotenv = require('dotenv').config();;
 const fileUpload = require("express-fileupload")
-const cloudinary = require("./Config/cloudinary")
+
 
 const port = process.env.PORT || 7777
 const path = require('path')
@@ -58,7 +58,7 @@ app.use('/' , getpost)
 
 
 
-cloudinary.connect()
+
 dbConnect().then(() => {
     console.log('Connection successful');
     app.listen(port, () => {
