@@ -60,8 +60,9 @@ app.use('/' , getpost)
 
 dbConnect().then(() => {
     console.log('Connection successful');
-    app.listen(port, () => {
-        console.log(`Server is running on port ${port}`);
+    app.listen(process.env.PORT, () => {
+        console.log(`Server is running on port ${process.env.PORT}`);
+        console.log(port)
       });
 }).catch(err => {
     console.error('Database connection failed:', err);
