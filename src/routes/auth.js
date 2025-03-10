@@ -27,7 +27,12 @@ authRouth.post('/signup' , async(req , res)=>{
       const token = await savedUser.getJWT();
   
       //add the token to cookie and send the respande back the user
-       res.cookie("token" ,token ,{ expires :new Date(Date.now()+8*3600000)})
+      res.cookie("token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+        expires: new Date(Date.now() + 8 * 3600000)
+    });
 
       
       res.json({ message : ' data pass successfully' , data :savedUser})
@@ -58,7 +63,12 @@ authRouth.post('/login', async (req, res) => {
         const token = await user.getJWT();
   
         //add the token to cookie and send the respande back the user
-          res.cookie("token" ,token ,{ expires :new Date(Date.now()+8*3600000)})
+        res.cookie("token", token, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === "production",
+          sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+          expires: new Date(Date.now() + 8 * 3600000)
+      });
   
          res.send(user );
         // return res.status(200).json({
