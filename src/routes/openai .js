@@ -5,7 +5,7 @@ const cors = require("cors");
 
 const airouter = express.Router();
 const corsOptions = {
-  origin: "http://localhost:5173", // Allow only your frontend origin
+  origin: "https://devtenderfrontend.onrender.com", // Allow only your frontend origin
   credentials: true, // Allow cookies and authorization headers
 };
 
