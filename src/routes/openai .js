@@ -1,11 +1,12 @@
 const express = require("express");
 const axios = require("axios");
-const dotenv = require("dotenv").config();
+ require("dotenv").config();
 const cors = require("cors");
 
 const airouter = express.Router();
 const corsOptions = {
-  origin: "https://devtenderfrontend.onrender.com", // Allow only your frontend origin
+  // origin: "https://devtenderfrontend.onrender.com",
+  origin: "http://localhost:5173", // Allow only your frontend origin
   credentials: true, // Allow cookies and authorization headers
 };
 
@@ -16,6 +17,8 @@ airouter.use(express.json());
 if (!process.env.OPENROUTER_API_KEY) {
   throw new Error("OPENROUTER_API_KEY is missing in the environment variables.");
 }
+
+
 
 // Retry function with exponential backoff
 const retryWithBackoff = async (fn, retries = 3, delay = 1000) => {
@@ -38,6 +41,8 @@ airouter.post("/ai-chat", async (req, res) => {
     return res.status(400).json({ error: "Message is required" });
   }
 
+  console.log("API Key:", process.env.OPENROUTER_API_KEY);
+
   try {
     const response = await retryWithBackoff(async () => {
       return await axios.post(
@@ -50,6 +55,8 @@ airouter.post("/ai-chat", async (req, res) => {
           ],
           max_tokens: 150,
         },
+      
+
         {
           headers: {
             "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
@@ -61,10 +68,12 @@ airouter.post("/ai-chat", async (req, res) => {
 
     // Extract response
     const aiResponse = response.data.choices[0].message.content;
+  
 
     // Send response back to the client
     res.json({ response: aiResponse });
   } catch (error) {
+   
     console.error("Error communicating with OpenRouter:", error.response?.data || error.message);
 
     if (error.response?.status === 429) {
