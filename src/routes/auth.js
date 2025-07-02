@@ -35,7 +35,7 @@ authRouth.post('/signup' , async(req , res)=>{
     });
 
       
-      res.json({ message : ' data pass successfully' , data :savedUser})
+      res.json({ message : ' data pass successfully' , data :savedUser , token})
 
       
   
@@ -70,12 +70,12 @@ authRouth.post('/login', async (req, res) => {
           expires: new Date(Date.now() + 8 * 3600000)
       });
   
-         res.send(user );
-        // return res.status(200).json({
-        //   message:"Login successful" , 
-        //   user ,
-        //   token
-        // })
+        //  res.send(user );
+        return res.status(200).json({
+          message:"Login successful" , 
+          user ,
+          token
+        })
       } else {
         throw new Error("Password is not correct");
       }

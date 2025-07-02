@@ -4,12 +4,14 @@ const User  = require('../models/user');
 
 const userAuth =async(req , res , next)=>{
     try{ 
-        const getcookies = req.cookies
-    
-         const  {token} = getcookies
-         if(!token){
-          return res.status(401).send("please login middleware")
-         }
+        const authHeader = req.header("Authorization");
+    const token =
+      req.cookies?.token ||
+      (authHeader ? authHeader.replace("Bearer ", "") : null);
+
+    if (!token) {
+      return res.status(401).json({ error: "Please authenticate" });
+    }
     
       //validate my token
           const decodedMessage = await jwt.verify(token ,"DEV@Tinder$790")

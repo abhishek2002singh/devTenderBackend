@@ -82,8 +82,19 @@ const http = require('http')
 const initializeSocket = require("./utils/socket.js");
 
 // Middlewares
-app.use(fileUpload({ useTempFiles: true, tempFileDir: "/tmp/" }));
-app.use(cors({ origin: "https://devtenderfrontend.onrender.com", credentials: true }));
+
+const isProduction = process.env.NODE_ENV === "production";
+const allowedOrigins = isProduction
+  ? ["https://devtenderfrontend.onrender.com"]
+  : ["http://localhost:5173"];
+
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(cookieParser());
 
