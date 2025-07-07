@@ -83,18 +83,15 @@ const initializeSocket = require("./utils/socket.js");
 
 // Middlewares
 
-const isProduction = process.env.NODE_ENV === "production";
-const allowedOrigins = isProduction
-  ? ["https://devtenderfrontend.onrender.com"]
-  : ["http://localhost:5173"];
 
 
-app.use(
-  cors({
-    origin: allowedOrigins,
-    credentials: true,
-  })
-);
+
+const corsOptions ={
+    origin:'https://devtenderfrontend.onrender.com', 
+    credentials:true,            //access-control-allow-credentials:true
+  
+}
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 

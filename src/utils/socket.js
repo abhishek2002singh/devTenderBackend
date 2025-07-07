@@ -3,6 +3,7 @@ const socket = require("socket.io")
 const crypto= require('crypto')
 const { Chat } = require("../models/messageSchema")
 
+
 const getSecretRoomId =(userId, chatid)=>{
    return crypto.createHash("sha256").update([ userId, chatid].sort().join("-")).digest("hex")
 } 
