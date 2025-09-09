@@ -2,6 +2,7 @@
 const socket = require("socket.io")
 const crypto= require('crypto')
 const { Chat } = require("../models/messageSchema")
+const { frontondUrl } = require("./constants")
 
 
 const getSecretRoomId =(userId, chatid)=>{
@@ -13,7 +14,7 @@ const initializeSocket =(server)=>{
 
     const io = socket(server ,{
         cors:{
-            origin: "https://devtenderfrontend.onrender.com"
+            origin: frontondUrl
         },
     })
     

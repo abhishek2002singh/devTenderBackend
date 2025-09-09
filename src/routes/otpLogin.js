@@ -16,7 +16,7 @@ const transporter = nodemailer.createTransport({
     user: process.env.SMTP_USER,
     pass: process.env.SMTP_PASS,
   },
-});
+})
 
 // 📌 Route 1: Send OTP to Email
 otpLogin.post("/send-otp", async (req, res) => {
